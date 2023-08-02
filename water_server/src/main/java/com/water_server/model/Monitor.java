@@ -23,6 +23,11 @@ public class Monitor implements Serializable {
     private double turbidez;
     @Column(name = "nivel")
     private double nivel;
+    @Column(name = "ph")
+    private double ph;
+    @Column(name = "condutividade")
+    private double condutividade;
+
 
     public Monitor() {
     }
@@ -33,23 +38,100 @@ public class Monitor implements Serializable {
         this.nivel = nivel;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public double getTemperatura() {
         return temperatura;
     }
+
     public void setTemperatura(double temperatura) {
         this.temperatura = temperatura;
     }
+
     public double getTurbidez() {
         return turbidez;
     }
+
     public void setTurbidez(double turbidez) {
         this.turbidez = turbidez;
     }
+
     public double getNivel() {
         return nivel;
     }
+
     public void setNivel(double nivel) {
         this.nivel = nivel;
     }   
+
+    public double getPh() {
+        return ph;
+    }
+
+    public void setPh(double ph) {
+        this.ph = ph;
+    }
+
+    public double getCondutividade() {
+        return condutividade;
+    }
+
+    public void setCondutividade(double condutividade) {
+        this.condutividade = condutividade;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(temperatura);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(turbidez);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(nivel);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(ph);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(condutividade);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Monitor other = (Monitor) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (Double.doubleToLongBits(temperatura) != Double.doubleToLongBits(other.temperatura))
+            return false;
+        if (Double.doubleToLongBits(turbidez) != Double.doubleToLongBits(other.turbidez))
+            return false;
+        if (Double.doubleToLongBits(nivel) != Double.doubleToLongBits(other.nivel))
+            return false;
+        if (Double.doubleToLongBits(ph) != Double.doubleToLongBits(other.ph))
+            return false;
+        if (Double.doubleToLongBits(condutividade) != Double.doubleToLongBits(other.condutividade))
+            return false;
+        return true;
+    }
+
+    
 
 }
