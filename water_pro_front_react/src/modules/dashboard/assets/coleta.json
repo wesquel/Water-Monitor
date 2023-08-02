@@ -1,0 +1,122 @@
+[
+    {
+        "PH": 16.26,
+        "turbidez": 0.16,
+        "condutividade": 418,
+        "temperatura": 48.84
+    },
+    {
+        "PH": 8.57,
+        "turbidez": 0.06,
+        "condutividade": 207,
+        "temperatura": 26.07
+    },
+    {
+        "PH": 8.49,
+        "turbidez": 0.07,
+        "condutividade": 207,
+        "temperatura": 25.9
+    },
+    {
+        "PH": 8.69,
+        "turbidez": 0.09,
+        "condutividade": 209,
+        "temperatura": 26.5
+    },
+    {
+        "PH": 8.41,
+        "turbidez": 0.08,
+        "condutividade": 211,
+        "temperatura": 24.48
+    },
+    {
+        "PH": 8.36,
+        "turbidez": 0.08,
+        "condutividade": 210,
+        "temperatura": 26.12
+    },
+    {
+        "PH": 8.66,
+        "turbidez": 0.08,
+        "condutividade": 208,
+        "temperatura": 24.45
+    },
+    {
+        "PH": 8.09,
+        "turbidez": 0.07,
+        "condutividade": 210,
+        "temperatura": 25.19
+    },
+    {
+        "PH": 8.3,
+        "turbidez": 0.09,
+        "condutividade": 209,
+        "temperatura": 24.81
+    },
+    {
+        "PH": 8.01,
+        "turbidez": 0.06,
+        "condutividade": 211,
+        "temperatura": 26.11
+    },
+    {
+        "PH": 8.75,
+        "turbidez": 0.07,
+        "condutividade": 208,
+        "temperatura": 25.24
+    },
+    {
+        "PH": 8.94,
+        "turbidez": 0.07,
+        "condutividade": 208,
+        "temperatura": 26.73
+    },
+    {
+        "PH": 8.06,
+        "turbidez": 0.07,
+        "condutividade": 208,
+        "temperatura": 26.95
+    },
+    {
+        "PH": 8.73,
+        "turbidez": 0.07,
+        "condutividade": 207,
+        "temperatura": 25.25
+    },
+    {
+        "PH": 8.68,
+        "turbidez": 0.07,
+        "condutividade": 210,
+        "temperatura": 25.03
+    },
+    {
+        "PH": 8.61,
+        "turbidez": 0.08,
+        "condutividade": 209,
+        "temperatura": 24.81
+    },
+    {
+        "PH": 8.73,
+        "turbidez": 0.08,
+        "condutividade": 209,
+        "temperatura": 25.53
+    },
+    {
+        "PH": 8.57,
+        "turbidez": 0.08,
+        "condutividade": 208,
+        "temperatura": 25.2
+    },
+    {
+        "PH": 8.26,
+        "turbidez": 0.06,
+        "condutividade": 211,
+        "temperatura": 24.79
+    },
+    {
+        "PH": 8.74,
+        "turbidez": 0.08,
+        "condutividade": 208,
+        "temperatura": 24.73
+    }
+]
