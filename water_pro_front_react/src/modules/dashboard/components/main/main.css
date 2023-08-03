@@ -1,0 +1,178 @@
+main 
+{
+  background: #f3f4f6;
+  grid-area: main;
+  overflow-y: auto;
+}
+
+.main__container 
+{
+  padding: 20px 35px;
+}
+
+.main__title 
+{
+  display: flex;
+  align-items: center;
+}
+
+.main__title > img 
+{
+  max-height: 100px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.main__greating > h1 
+{
+  font-size: 24px;
+  color: #2e4a66;
+  margin-bottom: 5px;
+}
+
+.main__greating > p 
+{
+  font-size: 14px;
+  font-weight: 700;
+  color: #a5aaad;
+}
+
+.main__cards 
+{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.card 
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 110px;
+  padding: 25px;
+  border-radius: 5px;
+  background-color: #FFF;
+  box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #FFF;
+}
+
+.card_inner
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card_inner > span 
+{
+  font-size: 25px;
+}
+
+.charts 
+{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.charts__left 
+{
+  padding: 25px;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 5px 5px 13px #ededed, -5px, -5px 13px #FFF;
+}
+
+.charts__left__title 
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charts__left__title > div > h1 
+{
+  font-size: 24px;
+  color: #2e4a66;
+  margin-bottom: 5px;
+}
+
+.charts__left__title > div > p 
+{
+  font-size: 14px;
+  font-weight: 700;
+  color: #a5aaad;
+}
+
+.charts__left__title > i 
+{
+  color: #FFF;
+  font-size: 20px;
+  background: #FFC100;
+  border-radius: 200px 0px 200px 200px;
+  -moz-border-radius: 200px 0px 200px 200px;
+  -webkit-border-radius: 200px 0px 200px 200px;
+  border: 0px solid #000;
+  padding: 15px;
+}
+
+.charts__right 
+{
+  padding: 25px;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 5px 5px 13px #ededed, -5px, -5px 13px #FFF;
+}
+
+.charts__right__title
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charts__right__title > div > h1 
+{
+  font-size: 24px;
+  color: #2e4a66;
+  margin-bottom: 5px;
+}
+
+.charts__right__title > div > p 
+{
+  font-size: 14px;
+  font-weight: 700;
+  color: #a5aaad;
+}
+
+.charts__right__title > i 
+{
+  color: #FFF;
+  font-size: 20px;
+  background: #FFC100;
+  border-radius: 200px 0px 200px 200px;
+  -moz-border-radius: 200px 0px 200px 200px;
+  -webkit-border-radius: 200px 0px 200px 200px;
+  border: 0px solid #000;
+  padding: 15px;
+}
+
+@media only screen and (max-width: 855px)
+{
+  .main__cards 
+  {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .charts 
+  {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  
+}
