@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Endpoint de usuário")
+@Tag(name = "Endpoint de usuário", description = "Gerenciamento de usuários")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -28,7 +28,7 @@ public class UserController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> update(@RequestBody UserVO userVO) {
-        return userServices.update(userVO);
+       return userServices.update(userVO);
     }
     
 }
