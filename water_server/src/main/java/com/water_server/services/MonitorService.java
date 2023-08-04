@@ -29,10 +29,10 @@ public class MonitorService {
     public PagedModel<EntityModel<MonitorVO>> findAll(Pageable pageable){
         logger.info("Buscando todos os dados!");
 
-        var produtoPage = monitorRepository.findAll(pageable);
-        var produtosVosPage = produtoPage.map(p -> DozerMapper.parseObject(p, MonitorVO.class));
+        var monitorPage = monitorRepository.findAll(pageable);
+        var monitorVosPage = monitorPage.map(p -> DozerMapper.parseObject(p, MonitorVO.class));
         
-        return assembler.toModel(produtosVosPage);
+        return assembler.toModel(monitorVosPage);
     }
 
     public MonitorVO create(MonitorVO monitorVO){

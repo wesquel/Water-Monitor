@@ -24,31 +24,25 @@ public class MonitorVO implements Serializable {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public double getPh() {
         return ph;
     }
 
-
     public void setPh(double ph) {
         this.ph = ph;
     }
-
 
     public double getTemperatura() {
         return temperatura;
     }
 
-
     public void setTemperatura(double temperatura) {
         this.temperatura = temperatura;
     }
-
 
     public double getTurbidez() {
         return turbidez;

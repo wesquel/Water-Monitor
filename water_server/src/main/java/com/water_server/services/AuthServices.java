@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.water_server.data.security.AccountCredentialsVO;
@@ -50,40 +49,6 @@ public class AuthServices {
 		}
 	}
 
-	
-	@SuppressWarnings("rawtypes")
-	public ResponseEntity signup(AccountCredentialsVO data) {
-		try {
-			
-
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-			var username = data.getUsername();
-
-			var password = encoder.encode(data.getPassword());
-
-			var user = repository.findByUsername(username);
-
-			if (user != null){
-				throw new BadCredentialsException("username already exist!");
-			}
-			
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-			
-			var tokenResponse = new TokenVO();
-			
-			// if (user != null) {
-			// 	tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
-			// } else {
-			// 	throw new UsernameNotFoundException("Username " + username + " not found!");
-			// }
-			
-			return ResponseEntity.ok(tokenResponse);
-		} catch (Exception e) {
-			throw new BadCredentialsException("Invalid username/password supplied!");
-		}
-	}
-	
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity refreshToken(String username, String refreshToken) {
 		var user = repository.findByUsername(username);

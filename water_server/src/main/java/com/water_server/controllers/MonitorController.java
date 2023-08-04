@@ -25,7 +25,7 @@ public class MonitorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> criarProduto(@RequestBody MonitorVO monitorVO) {
+    public ResponseEntity<?> criarMonitor(@RequestBody MonitorVO monitorVO) {
         try {
             MonitorVO monitorCriado = monitorService.create(monitorVO);
             return ResponseEntity.ok().body(monitorCriado);
