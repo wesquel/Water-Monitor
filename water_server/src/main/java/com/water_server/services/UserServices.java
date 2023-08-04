@@ -1,10 +1,9 @@
 package com.water_server.services;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.water_server.data.UserVO;
 import com.water_server.mapper.DozerMapper;
-import com.water_server.model.Permission;
 import com.water_server.model.User;
 import com.water_server.repository.PermissionRepository;
 import com.water_server.repository.UserRepository;
@@ -34,17 +32,17 @@ public class UserServices implements UserDetailsService{
         this.repository = repository;
     }
 
-     public ResponseEntity<?> create(UserVO userVO){
-
+    public ResponseEntity<?> create(UserVO userVO) {
         User user = repository.findByUsername(userVO.getUserName());
 
-        if(user != null){
-            String mensagemDeErro = "username always exist.";
-            return ResponseEntity.badRequest().body(mensagemDeErro);
+        if (user != null) {
+            String errorMessage = "O nome de usuário já existe.";
+
+            return ResponseEntity.badRequest().body(errorMessage);
         }
 
         userVO = setDefaultDataUser(userVO);
-        
+
         var entity = DozerMapper.parseObject(userVO, User.class);
         UserVO vo;
 
@@ -52,7 +50,32 @@ public class UserServices implements UserDetailsService{
         vo = DozerMapper.parseObject(newUser, UserVO.class);
 
         return ResponseEntity.ok().body(vo);
+    }
 
+    public ResponseEntity<?> update(UserVO userVO) {
+        if (userVO == null) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Requisição inválida!");
+        }
+
+        User user = repository.findById(userVO.getId()).orElse(null);
+
+        if (user == null) {
+            String errorMessage = "O nome de usuário não existe.";
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
+        user.setUserName(userVO.getUserName());
+        user.setEnabled(userVO.getEnabled());
+        user.setFullname(userVO.getFullname());
+        user.setAccountNonExpired(userVO.getAccountNonExpired());
+        user.setAccountNonLocked(userVO.getAccountNonLocked());
+        user.setCredentialsNonExpired(userVO.getCredentialsNonExpired());
+
+        User updatedUser = repository.save(user);
+        UserVO resultUserVO = DozerMapper.parseObject(updatedUser, UserVO.class);
+
+        return ResponseEntity.ok().body(resultUserVO);
     }
 
     public UserVO setDefaultDataUser(UserVO userVO){

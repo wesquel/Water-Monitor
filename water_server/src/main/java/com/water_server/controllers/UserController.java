@@ -17,11 +17,18 @@ public class UserController {
     @Autowired 
     private UserServices userServices;
 
-    @Operation(summary = "Realiza a criação de um usuário e retorna o usuário.")
+    @Operation(summary = "Realiza a criação de um usuário e o retorna.")
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@RequestBody UserVO userVO){
         return userServices.create(userVO);
+    }
+
+    @Operation(summary = "Realiza a atualização de um usuário e o retorna.")
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> update(@RequestBody UserVO userVO) {
+        return userServices.update(userVO);
     }
     
 }
