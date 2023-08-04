@@ -27,19 +27,6 @@ public class mqttController {
     @Autowired
     private Subscriber subscriber;
 
-    @GetMapping
-    public ResponseEntity<PagedModel<EntityModel<MonitorVO>>> listarProdutos(
-        @RequestParam(value = "page", defaultValue = "0") Integer page, 
-        @RequestParam(value = "size", defaultValue = "12") Integer size,
-        @RequestParam(value = "direction", defaultValue = "asc") String direction  
-        ) {
-        
-        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-        
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "mac"));
-        return ResponseEntity.ok(monitorService.findAll(pageable));
-    }
-
     @GetMapping("/start-subscriber")
     public void startSubscriber() {
         subscriber.start();
