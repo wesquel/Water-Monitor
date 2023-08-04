@@ -1,7 +1,10 @@
 package com.water_server.services;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import com.water_server.exceptions.ResourceNotFoundException;
+import com.water_server.model.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +47,13 @@ public class UserServices implements UserDetailsService{
         userVO = setDefaultDataUser(userVO);
 
         var entity = DozerMapper.parseObject(userVO, User.class);
+
+        Permission commonUserPermission = permissionRepository.findById(2L).orElseThrow(
+                () -> new ResourceNotFoundException("ID de permissão não encontrado.")
+        );
+
+        entity.setPermissions(List.of(commonUserPermission));
+
         UserVO vo;
 
         User newUser = repository.save(entity);
