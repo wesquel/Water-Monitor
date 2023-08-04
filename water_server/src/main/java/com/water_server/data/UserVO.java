@@ -1,38 +1,49 @@
 package com.water_server.data;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.water_server.model.Permission;
 
 public class UserVO implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private Long id;
+    private String userName;
+    private String fullname;
     private String password;
-    private String full_name;
-
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
+    private List<Permission> permissions;
 
-    public UserVO(String username, String password, String full_name) {
-        this.username = username;
-        this.password = password;
-        this.full_name = full_name;
 
-        this.accountNonExpired = true;
-        this.accountNonLocked = true;
-        this.credentialsNonExpired = true;
-        this.enabled = true;
+    public Long getId() {
+        return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        return userName;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
 
     public String getPassword() {
         return password;
@@ -40,14 +51,6 @@ public class UserVO implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
     }
 
     public Boolean getAccountNonExpired() {
@@ -81,5 +84,14 @@ public class UserVO implements Serializable {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
         
 }
