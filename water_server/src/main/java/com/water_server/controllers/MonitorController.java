@@ -1,5 +1,6 @@
 package com.water_server.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import com.water_server.services.MonitorService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Authentication Endpoint")
+@Tag(name = "Endpoint de monitor")
 @RestController
 @RequestMapping("/monitor")
 public class MonitorController {
@@ -23,6 +24,7 @@ public class MonitorController {
     @Autowired
     private MonitorService monitorService;
 
+    @Operation(summary = "Cria uma instância de monitor.")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> criarMonitor(@RequestBody MonitorVO monitorVO) {

@@ -17,8 +17,7 @@ import com.water_server.services.AuthServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-
-@Tag(name = "Authentication Endpoint")
+@Tag(name = "Endpoint de autenticação")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -27,7 +26,7 @@ public class AuthController {
 	AuthServices authServices;
 	
 	@SuppressWarnings("rawtypes")
-	@Operation(summary = "Authenticates a user and returns a token.")
+	@Operation(summary = "Realiza a autenticação do usuário e retorna um token.")
 	@PostMapping(value = "/signin")
 	public ResponseEntity signin(@RequestBody AccountCredentialsVO data) {
 		if (checkIfParamsAreNotNull(data)) {
@@ -44,7 +43,7 @@ public class AuthController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@Operation(summary = "Refreshes token for authenticated user and returns a token.")
+	@Operation(summary = "Atualiza o token para o usuário autenticado e retorna um token.")
 	@PutMapping(value = "/refresh/{username}")
 	public ResponseEntity refreshToken(@PathVariable("username") String username, @RequestHeader("Authorization") String refreshToken) {
 		if (checkIfParamsAreNotNull(username, refreshToken)) {
