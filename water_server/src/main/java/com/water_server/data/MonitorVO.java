@@ -2,9 +2,11 @@ package com.water_server.data;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.dozermapper.core.Mapping;
 
+@JsonIgnoreProperties({"id"})
 public class MonitorVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
