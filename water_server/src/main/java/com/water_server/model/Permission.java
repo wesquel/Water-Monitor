@@ -1,7 +1,5 @@
 package com.water_server.model;
 
-import java.io.Serializable;
-
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Column;
@@ -13,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "permission")
-public class Permission implements GrantedAuthority, Serializable {
+public class Permission implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;
 	

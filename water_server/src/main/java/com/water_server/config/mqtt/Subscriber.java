@@ -11,7 +11,6 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import com.water_server.data.MonitorVO;
-import com.water_server.model.Monitor;
 import com.water_server.services.MonitorService;
 
 
