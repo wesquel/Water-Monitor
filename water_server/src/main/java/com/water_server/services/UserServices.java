@@ -36,7 +36,7 @@ public class UserServices implements UserDetailsService{
     }
 
     public ResponseEntity<?> create(UserVO userVO) {
-        User user = repository.findByUsername(userVO.getUserName());
+        User user = repository.findByUsername(userVO.getUsername());
 
         if (user != null) {
             String errorMessage = "O nome de usuário já existe.";
@@ -67,7 +67,7 @@ public class UserServices implements UserDetailsService{
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Requisição inválida!");
         }
 
-        User user = repository.findById(userVO.getId()).orElse(null);
+        User user = repository.findByUsername(userVO.getUsername());
 
         if (user == null) {
             String errorMessage = "O nome de usuário não existe.";
@@ -75,12 +75,7 @@ public class UserServices implements UserDetailsService{
             return ResponseEntity.badRequest().body(errorMessage);
         }
 
-        user.setUserName(userVO.getUserName());
-        user.setEnabled(userVO.getEnabled());
         user.setFullname(userVO.getFullname());
-        user.setAccountNonExpired(userVO.getAccountNonExpired());
-        user.setAccountNonLocked(userVO.getAccountNonLocked());
-        user.setCredentialsNonExpired(userVO.getCredentialsNonExpired());
 
         User updatedUser = repository.save(user);
         UserVO resultUserVO = DozerMapper.parseObject(updatedUser, UserVO.class);
