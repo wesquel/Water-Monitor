@@ -5,7 +5,7 @@
 #### Gerenciamento de usuários
 *Realiza a atualização de um usuário e o retorna.*
 
-```http
+```
   PUT /user
 ```
 
@@ -17,7 +17,7 @@
 
 *Realiza a criação de um usuário e o retorna.*
 
-```http
+```
   POST /user/signup
 ```
 
