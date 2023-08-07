@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(name = "full_name")
-    private String fullname;
+    private String fullName;
 
     @Column(name = "password")
     private String password;
@@ -119,12 +119,12 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setPassword(String password) {
@@ -177,7 +177,7 @@ public class User implements UserDetails {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((username == null) ? 0 : username.hashCode());
-        result = prime * result + ((fullname == null) ? 0 : fullname.hashCode());
+        result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((accountNonExpired == null) ? 0 : accountNonExpired.hashCode());
         result = prime * result + ((accountNonLocked == null) ? 0 : accountNonLocked.hashCode());
@@ -206,10 +206,10 @@ public class User implements UserDetails {
                 return false;
         } else if (!username.equals(other.username))
             return false;
-        if (fullname == null) {
-            if (other.fullname != null)
+        if (fullName == null) {
+            if (other.fullName != null)
                 return false;
-        } else if (!fullname.equals(other.fullname))
+        } else if (!fullName.equals(other.fullName))
             return false;
         if (password == null) {
             if (other.password != null)

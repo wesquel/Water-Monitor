@@ -13,7 +13,7 @@ public class UserVO implements Serializable {
 
     private Long id;
     private String username;
-    private String fullname;
+    private String fullName;
     private String password;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
@@ -38,14 +38,13 @@ public class UserVO implements Serializable {
         this.username = username;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-
 
     public String getPassword() {
         return password;

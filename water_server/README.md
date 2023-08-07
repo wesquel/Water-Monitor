@@ -13,7 +13,7 @@
 |:-----------| :--------- | :---------------------------------- |
 | `username` | `string` | **Obrigatório**. |
 | `password` | `string` | **Obrigatório**. |
-| `fullname` | `string` | **Obrigatório**. |
+| `fullName` | `string` | **Obrigatório**. |
 
 *Realiza a criação de um usuário e o retorna.*
 
@@ -25,6 +25,6 @@
 |:-----------| :--------- | :------------------------------------------ |
 | `username` | `string` | **Obrigatório**. |
 | `password` | `string` | **Obrigatório**. |
-| `fullname` | `string` | **Obrigatório**. |
+| `fullName` | `string` | **Obrigatório**. |
 
 

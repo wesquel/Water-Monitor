@@ -75,7 +75,7 @@ public class UserServices implements UserDetailsService{
             return ResponseEntity.badRequest().body(errorMessage);
         }
 
-        user.setFullname(userVO.getFullname());
+        user.setFullName(userVO.getFullName());
 
         User updatedUser = repository.save(user);
         UserVO resultUserVO = DozerMapper.parseObject(updatedUser, UserVO.class);
