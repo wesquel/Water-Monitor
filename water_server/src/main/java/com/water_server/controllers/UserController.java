@@ -25,22 +25,27 @@ public class UserController {
     @Autowired 
     private UserServices userServices;
 
-     @GetMapping("/{username}")
-     @ResponseStatus(HttpStatus.OK)
-     public ResponseEntity<?> findByUsername(@PathVariable String username) {
-         return userServices.findByUsername(username);
-     }
+    @Operation(summary = "Realiza uma busca pelo username exato.")
+    @GetMapping("/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> findByUsername(@PathVariable String username) {
+        return userServices.findByUsername(username);
+    }
 
+    @Operation(
+            summary = "Realiza uma busca paginada de todos os usuários.",
+            description = "Realiza uma busca de todos os usuários pelo número da página, tamanho da página e ordem."
+    )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PagedModel<EntityModel<UserVO>>> findAllUsers(
+    public ResponseEntity<?> findAllUsers(
         @RequestParam(value = "page", defaultValue = "0") Integer page, 
         @RequestParam(value = "size", defaultValue = "12") Integer size,
         @RequestParam(value = "direction", defaultValue = "asc") String direction  
     ) {
-        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+        Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "username"));
-        return ResponseEntity.ok(userServices.findAll(pageable));
+        return userServices.findAll(pageable);
     }
 
     @Operation(summary = "Realiza a criação de um usuário e o retorna.")

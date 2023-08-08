@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 
 import com.water_server.exceptions.ResourceNotFoundException;
 import com.water_server.model.Permission;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
@@ -68,13 +70,25 @@ public class UserServices implements UserDetailsService{
         }
     }
 
-    public PagedModel<EntityModel<UserVO>> findAll(Pageable pageable){
+    public ResponseEntity<?> findAll(Pageable pageable) {
         logger.info("Buscando todos os tags!");
 
-        var userPage = repository.findAll(pageable);
-        var userVosPage = userPage.map(p -> DozerMapper.parseObject(p, UserVO.class));
-        
-        return assembler.toModel(userVosPage);
+        if (pageable == null) {
+            String errorMessage = "O objeto Pageable não pode ser nulo.";
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
+        try {
+            Page<User> userPage = repository.findAll(pageable);
+            Page<UserVO> userVOsPage = userPage.map(p -> DozerMapper.parseObject(p, UserVO.class));
+
+            return ResponseEntity.ok(assembler.toModel(userVOsPage));
+        } catch (Exception e) {
+            String errorMessage = "Erro ao buscar os usuários.";
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
     }
 
     public ResponseEntity<?> create(UserVO userVO) {
