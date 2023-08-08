@@ -1,21 +1,20 @@
 package com.water_server.controllers;
 
+import com.water_server.data.UserVO;
+import com.water_server.services.UserServices;
+import com.water_server.validation.UserCreationGroup;
+import com.water_server.validation.UserUpdateGroup;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import com.water_server.data.UserVO;
-import com.water_server.services.UserServices;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Endpoint de usuário", description = "Gerenciamento de usuários")
 @RestController
@@ -51,15 +50,14 @@ public class UserController {
     @Operation(summary = "Realiza a criação de um usuário e o retorna.")
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@RequestBody UserVO userVO){
+    public ResponseEntity<?> create(@RequestBody @Validated(UserCreationGroup.class) UserVO userVO) {
         return userServices.create(userVO);
     }
 
     @Operation(summary = "Realiza a atualização de um usuário e o retorna.")
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> update(@RequestBody UserVO userVO) {
+    public ResponseEntity<?> update(@RequestBody @Validated(UserUpdateGroup.class) UserVO userVO) {
        return userServices.update(userVO);
     }
-    
 }

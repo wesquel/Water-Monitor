@@ -3,6 +3,10 @@ package com.water_server.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.water_server.model.Permission;
+import com.water_server.validation.UserCreationGroup;
+import com.water_server.validation.UserUpdateGroup;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,14 +17,40 @@ public class UserVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @NotBlank(
+            message = "O nome de usuário não pode ser vazio.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
+    @Size(
+            min = 4, max = 50, message = "O nome de usuário deve ter no mínimo 4 e no máximo 50 caracteres.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
     private String username;
+
+    @NotBlank(
+            message = "O nome completo não pode ser vazio.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
+    @Size(
+            max = 100, message = "O nome de usuário não pode ter mais de 100 caracteres.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
     private String fullName;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotBlank(message = "A senha não pode ser vazia.")
+    @Size(min = 8, message = "A senha deve conter ao menos 8 caracteres.", groups = {UserCreationGroup.class})
     private String password;
+
     private Boolean accountNonExpired;
+
     private Boolean accountNonLocked;
+
     private Boolean credentialsNonExpired;
+
     private Boolean enabled;
+
     private List<Permission> permissions;
 
     public Long getId() {
