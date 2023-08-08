@@ -42,6 +42,32 @@ public class UserServices implements UserDetailsService{
         this.repository = repository;
     }
 
+    public ResponseEntity<?> findByUsername(String username) {
+        logger.info("Iniciando busca do usuário por username: " + username);
+
+        if (username == null || username.isEmpty()) {
+            String errorMessage = "O nome de usuário não pode ser nulo ou vazio.";
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
+        try {
+            User user = repository.findByUsername(username);
+
+            if (user == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            UserVO userVO = DozerMapper.parseObject(user, UserVO.class);
+
+            return ResponseEntity.ok(userVO);
+        } catch (Exception e) {
+            String errorMessage = "Erro ao buscar o usuário.";
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
+    }
+
     public PagedModel<EntityModel<UserVO>> findAll(Pageable pageable){
         logger.info("Buscando todos os tags!");
 

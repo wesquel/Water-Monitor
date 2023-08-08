@@ -9,14 +9,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.water_server.data.UserVO;
 import com.water_server.services.UserServices;
@@ -32,11 +25,11 @@ public class UserController {
     @Autowired 
     private UserServices userServices;
 
-    // @GetMapping("/{username}")
-    // @ResponseStatus(HttpStatus.OK)
-    // public ResponseEntity<?> findByUsername(@RequestBody String username){
-    //     return userServices.findByUsername(username);
-    // }
+     @GetMapping("/{username}")
+     @ResponseStatus(HttpStatus.OK)
+     public ResponseEntity<?> findByUsername(@PathVariable String username) {
+         return userServices.findByUsername(username);
+     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -45,7 +38,6 @@ public class UserController {
         @RequestParam(value = "size", defaultValue = "12") Integer size,
         @RequestParam(value = "direction", defaultValue = "asc") String direction  
     ) {
-
         var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "username"));
         return ResponseEntity.ok(userServices.findAll(pageable));
