@@ -1,10 +1,11 @@
 package com.water_server.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.water_server.model.Permission;
+
 import java.io.Serializable;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.water_server.model.Permission;
 
 @JsonIgnoreProperties({"id", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled", "permissions"})
 public class UserVO implements Serializable {
@@ -14,13 +15,13 @@ public class UserVO implements Serializable {
     private Long id;
     private String username;
     private String fullName;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
     private List<Permission> permissions;
-
 
     public Long getId() {
         return id;
@@ -93,6 +94,4 @@ public class UserVO implements Serializable {
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
-
-        
 }
