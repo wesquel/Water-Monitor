@@ -29,10 +29,10 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "user_name", unique = true)
-    private String userName;
+    private String username;
 
     @Column(name = "full_name")
-    private String fullname;
+    private String fullName;
 
     @Column(name = "password")
     private String password;
@@ -79,7 +79,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
@@ -115,20 +115,16 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setPassword(String password) {
@@ -180,8 +176,8 @@ public class User implements UserDetails {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-        result = prime * result + ((fullname == null) ? 0 : fullname.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((accountNonExpired == null) ? 0 : accountNonExpired.hashCode());
         result = prime * result + ((accountNonLocked == null) ? 0 : accountNonLocked.hashCode());
@@ -205,15 +201,15 @@ public class User implements UserDetails {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (userName == null) {
-            if (other.userName != null)
+        if (username == null) {
+            if (other.username != null)
                 return false;
-        } else if (!userName.equals(other.userName))
+        } else if (!username.equals(other.username))
             return false;
-        if (fullname == null) {
-            if (other.fullname != null)
+        if (fullName == null) {
+            if (other.fullName != null)
                 return false;
-        } else if (!fullname.equals(other.fullname))
+        } else if (!fullName.equals(other.fullName))
             return false;
         if (password == null) {
             if (other.password != null)
