@@ -1,12 +1,17 @@
 package com.water_server.data.security;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.io.Serializable;
 
-public class AccountCredentialsVO implements Serializable{
+public class AccountCredentialsVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotBlank(message = "O nome de usuário não pode ser vazio.")
     private String username;
+
+    @NotBlank(message = "A senha não pode ser vazia.")
     private String password;
 
     public AccountCredentialsVO(String username, String password) {

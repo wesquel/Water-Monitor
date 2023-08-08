@@ -1,5 +1,6 @@
 package com.water_server.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    
+
     @Autowired
 	AuthServices authServices;
-	
+
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Realiza a autenticação do usuário e retorna um token.")
 	@PostMapping(value = "/signin")
-	public ResponseEntity signin(@RequestBody AccountCredentialsVO data) {
+	public ResponseEntity signin(@RequestBody @Valid AccountCredentialsVO data) {
 		if (checkIfParamsAreNotNull(data)) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		}
