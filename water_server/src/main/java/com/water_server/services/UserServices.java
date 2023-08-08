@@ -6,6 +6,10 @@ import java.util.logging.Logger;
 import com.water_server.exceptions.ResourceNotFoundException;
 import com.water_server.model.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,8 +35,20 @@ public class UserServices implements UserDetailsService{
     @Autowired
     PermissionRepository permissionRepository;
 
+    @Autowired
+    private PagedResourcesAssembler<UserVO> assembler;
+
     public UserServices(UserRepository repository) {
         this.repository = repository;
+    }
+
+    public PagedModel<EntityModel<UserVO>> findAll(Pageable pageable){
+        logger.info("Buscando todos os tags!");
+
+        var userPage = repository.findAll(pageable);
+        var userVosPage = userPage.map(p -> DozerMapper.parseObject(p, UserVO.class));
+        
+        return assembler.toModel(userVosPage);
     }
 
     public ResponseEntity<?> create(UserVO userVO) {
