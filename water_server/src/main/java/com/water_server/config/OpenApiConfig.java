@@ -7,6 +7,12 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
+/**
+ * Configuração da documentação da API utilizando a especificação OpenAPI.
+ * Essa classe define a configuração necessária para gerar a documentação da API Water Monitor
+ * no formato OpenAPI. A documentação descreve os detalhes da API, incluindo título, versão,
+ * descrição, termos de serviço e informações de licença.
+ */
 
 @Configuration
 public class OpenApiConfig {
@@ -16,7 +22,7 @@ public class OpenApiConfig {
         return new OpenAPI()
         .info(
             new Info()
-            .title("API Manager digital price tag")
+            .title("API Water Monitor")
             .version("v1")
             .description("Some description about your API")
             .termsOfService("github.com/wesquel")

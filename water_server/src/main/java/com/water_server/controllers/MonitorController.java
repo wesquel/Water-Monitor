@@ -19,6 +19,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Endpoint de monitor")
 @RestController
 @RequestMapping("/monitor")
+
+/**
+ * Controlador responsável pelos endpoints relacionados à monitoramento da água.
+ * Essa classe define os endpoints para criação de monitores.
+ */
+
 public class MonitorController {
 
     @Autowired
@@ -42,5 +48,4 @@ public class MonitorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagemDeErro);
         }
     }
-
 }

@@ -16,6 +16,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * Controlador responsável pelos endpoints relacionados à gestão de usuários.
+ * Essa classe define os endpoints para realizar operações de busca, criação e atualização
+ * de usuários, fornecendo funcionalidades de gerenciamento de usuários.
+ */
+
 @Tag(name = "Endpoint de usuário", description = "Gerenciamento de usuários")
 @RestController
 @RequestMapping("/user")

@@ -11,9 +11,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+     * Configuração de segurança da aplicação para controle de autenticação e autorização.
+     * Essa classe define a configuração de segurança da aplicação, incluindo a codificação de senhas,
+     * a configuração de filtros de segurança e a definição de regras de autorização para as URLs.
+ */
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+
+    /**
+         * Método de configuração que fornece um encoder de senha para codificar e comparar senhas.
+         * @return Um encoder de senha BCrypt.
+     */
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {

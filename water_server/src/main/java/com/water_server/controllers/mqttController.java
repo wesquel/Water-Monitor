@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controlador responsável pelo MQTT.
+ * Essa classe define os endpoints para iniciar o subscriber do MQTT.
+ */
+
 @Tag(name = "Endpoint de MQTT")
 @RestController
 @RequestMapping("/water_monitor")

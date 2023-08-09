@@ -18,6 +18,12 @@ import com.water_server.services.AuthServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * Controlador responsável pelos endpoints relacionados à autenticação de usuários.
+ * Essa classe define os endpoints para autenticação de usuários, permitindo a obtenção
+ * e atualização de tokens de autenticação.
+ */
+
 @Tag(name = "Endpoint de autenticação")
 @RestController
 @RequestMapping("/auth")
