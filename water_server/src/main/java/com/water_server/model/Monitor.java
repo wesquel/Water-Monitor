@@ -8,6 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Classe que representa os dados de monitoramento persistidos no banco de dados.
+ * Essa classe é mapeada para uma entidade no banco de dados e armazena as informações
+ * de temperatura, turbidez, nível, pH e condutividade de um monitoramento.
+ */
+
 @Entity
 public class Monitor implements Serializable {
     

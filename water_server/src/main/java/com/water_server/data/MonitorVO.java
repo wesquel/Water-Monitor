@@ -6,6 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.dozermapper.core.Mapping;
 
+
+/**
+ * Classe que representa os dados de um monitoramento.
+ * Essa classe encapsula as informações de um monitoramento, incluindo
+ * os valores de pH, temperatura, turbidez e condutividade.
+ */
+
 @JsonIgnoreProperties({"id"})
 public class MonitorVO implements Serializable {
 
