@@ -10,10 +10,10 @@
   POST /auth/signin
 ```
 
-| Parâmetro  | Tipo            | Descrição                              | Obrigatório                              |
-|:-----------|:----------------|:---------------------------------------|:-----------------------------------------|
-| `username` | `string (body)` | Nome de usuário.                       | Sim                                      |
-| `password` | `string (body)` | **Obrigatório**. Senha.                | Sim                                      |
+| Parâmetro  | Tipo     | Localização   | Descrição                              | Obrigatório                              |
+|:-----------|:---------|:--------------|:---------------------------------------|:-----------------------------------------|
+| `username` | `string` |     `body`    | Nome de usuário.                       | Sim                                      |
+| `password` | `string` |     `body`    | Senha.                                 | Sim                                      |
 
 *Atualiza o token para o usuário autenticado e retorna um token.*
 
@@ -21,10 +21,10 @@
   POST /auth/refresh/{username}
 ```
 
-| Parâmetro       | Tipo              | Descrição                         |
-|:----------------|:------------------|:----------------------------------|
-| `username`      | `string (path)`   | **Obrigatório**. Nome de usuário. |
-| `Authorization` | `string (header)` | **Obrigatório**. Refresh token.   |
+| Parâmetro       | Tipo     | Localização   | Descrição                              | Obrigatório                              |
+|:----------------|:---------|:--------------|:---------------------------------------|:-----------------------------------------|
+| `username`      | `string` |    `path`     | Nome de usuário.                       | Sim                                      |
+| `Authorization` | `string` |    `header`   | Refresh token.                         | Sim                                      |
 
 ### Endpoint de usuário (gerenciamento de usuários)
 
@@ -36,11 +36,11 @@
   POST /user/signup
 ```
 
-| Parâmetro  | Tipo            | Descrição                         |
-|:-----------|:----------------|:----------------------------------|
-| `username` | `string (body)` | **Obrigatório**. Nome de usuário. |
-| `password` | `string (body)` | **Obrigatório**. Senha.           |
-| `fullName` | `string (body)` | **Obrigatório**. Nome completo.   |
+| Parâmetro       | Tipo     | Localização   | Descrição                              | Obrigatório                              |
+|:----------------|:---------|:--------------|:---------------------------------------|:-----------------------------------------|
+| `username`      | `string` |    `body`     | Nome de usuário.                       | Sim                                      |
+| `password`      | `string` |    `body`     | Senha.                                 | Sim                                      |
+| `fullName`      | `string` |    `body`     | Nome completo.                         | Sim                                      |
 
 *Realiza a atualização de um usuário e o retorna.*
 
@@ -48,10 +48,10 @@
   PUT /user
 ```
 
-| Parâmetro  | Tipo            | Descrição                         |
-|:-----------|:----------------|:----------------------------------|
-| `username` | `string (body)` | **Obrigatório**. Nome de usuário. |
-| `fullName` | `string (body)` | **Obrigatório**. Nome completo.   |
+| Parâmetro       | Tipo     | Localização   | Descrição                              | Obrigatório                              |
+|:----------------|:---------|:--------------|:---------------------------------------|:-----------------------------------------|
+| `username`      | `string` |    `body`     | Nome de usuário.                       | Sim                                      |
+| `fullName`      | `string` |    `body`     | Nome completo.                         | Sim                                      |
 
 *Realiza uma busca pelo username exato.*
 
@@ -59,18 +59,17 @@
   GET /user/{username}
 ```
 
-| Parâmetro  | Tipo            | Descrição                         |
-|:-----------|:----------------|:----------------------------------|
-| `username` | `string (path)` | **Obrigatório**. Nome de usuário. |
+| Parâmetro       | Tipo     | Localização   | Descrição                              | Obrigatório                              |
+|:----------------|:---------|:--------------|:---------------------------------------|:-----------------------------------------|
+| `username`      | `string` |    `path`     | Nome de usuário.                       | Sim                                      |
 
 *Realiza uma busca paginada de todos os usuários.*
 
 ```
   GET /user
 ```
-
-| Parâmetro   | Tipo              | Descrição                                                          | Padrão |
-|:------------|:------------------|:-------------------------------------------------------------------|:-------|
-| `page`      | `integer (query)` | **Opcional**. O número da página.                                  | 0      |     
-| `size`      | `integer (query)` | **Opcional**. O tamanho de cada página.                            | 12     |
-| `direction` | `string (query)`  | **Opcional**. Ordem crescente (**asc**) ou decrescente (**desc**). | asc    |
+| Parâmetro       | Tipo      | Localização    | Descrição                                           | Padrão | Obrigatório                              |
+|:----------------|:----------|:---------------|:----------------------------------------------------|:-------|:-----------------------------------------|
+| `page`          | `integer` |    `query`     | Número da página.                                   | 0      | Não                                      |
+| `size`          | `integer` |    `query`     | Quantidade de elementos em cada página.             | 12     | Não                                      |
+| `direction`     | `string`  |    `query`     | Ordem crescente (**asc**) ou decrescente (**desc**) | asc    | Não                                      |
