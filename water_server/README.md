@@ -10,10 +10,10 @@
   POST /auth/signin
 ```
 
-| Parâmetro  | Tipo            | Descrição                              |
-|:-----------|:----------------|:---------------------------------------|
-| `username` | `string (body)` | **Obrigatório**. Nome de usuário.      |
-| `password` | `string (body)` | **Obrigatório**. Senha.                |
+| Parâmetro  | Tipo            | Descrição                              | Obrigatório                              |
+|:-----------|:----------------|:---------------------------------------|:-----------------------------------------|
+| `username` | `string (body)` | Nome de usuário.                       | Sim                                      |
+| `password` | `string (body)` | **Obrigatório**. Senha.                | Sim                                      |
 
 *Atualiza o token para o usuário autenticado e retorna um token.*
 
