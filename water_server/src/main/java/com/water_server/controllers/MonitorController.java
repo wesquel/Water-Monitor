@@ -16,15 +16,14 @@ import com.water_server.services.MonitorService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Endpoint de monitor")
-@RestController
-@RequestMapping("/monitor")
-
 /**
  * Controlador responsável pelos endpoints relacionados à monitoramento da água.
  * Essa classe define os endpoints para criação de monitores.
  */
 
+@Tag(name = "Endpoint de monitor")
+@RestController
+@RequestMapping("/api/monitor")
 public class MonitorController {
 
     @Autowired

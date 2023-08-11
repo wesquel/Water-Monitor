@@ -1,5 +1,8 @@
 package com.water_server.config;
 
+import com.water_server.security.jwt.JwtConfigurer;
+import com.water_server.security.jwt.JwtTokenProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,6 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,6 +25,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
+    private static final String[] PUBLIC_MATCHERS = {
+            "/api/user/signup",
+            "/api/auth/signin"
+    };
 
     /**
          * Método de configuração que fornece um encoder de senha para codificar e comparar senhas.
@@ -34,21 +45,26 @@ public class SecurityConfig {
 
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
-        .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/dashboard", "/dashboard/**").authenticated()
-            .anyRequest().permitAll()
-        ).rememberMe(Customizer.withDefaults());
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(
+                        authorize -> authorize
+                                .requestMatchers(PUBLIC_MATCHERS).permitAll()
+                                .anyRequest().authenticated()
+                )
+                .sessionManagement(
+                        sessionManagement -> sessionManagement
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .rememberMe(Customizer.withDefaults())
+                .cors(Customizer.withDefaults())
+                .apply(new JwtConfigurer(tokenProvider));
 
         return http.build();
     }
-	
 
 	@Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
     }
-    
 }

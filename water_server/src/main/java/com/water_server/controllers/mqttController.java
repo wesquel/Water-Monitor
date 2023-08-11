@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Endpoint de MQTT")
 @RestController
-@RequestMapping("/water_monitor")
+@RequestMapping("/api/water_monitor")
 public class mqttController {
 
     @Autowired
