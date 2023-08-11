@@ -1,0 +1,10 @@
+.gradient {
+    background: hsla(200, 100%, 49%, 1);
+
+    background: linear-gradient(90deg, hsla(200, 100%, 49%, 1) 49%, rgba(255, 255, 255, 0) 45%);
+
+    background: -moz-linear-gradient(90deg, hsla(200, 100%, 49%, 1) 49%, rgba(255, 255, 255, 0) 45%);
+
+    background: -webkit-linear-gradient(90deg, hsla(200, 100%, 49%, 1) 49%, rgba(255, 255, 255, 0) 45%);
+
+}
