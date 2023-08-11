@@ -1,7 +1,7 @@
 #include <OneWire.h>  
 #include <DallasTemperature.h>
 
-#define temp D4
+#define temp 4
 
 OneWire temp_one_wire(temp);  
 
@@ -16,9 +16,8 @@ void setup(void)
 void loop(void)
 { 
 
- Serial.print("Iniciando conversão..."); 
- sensors.requestTemperatures(); 
- Serial.println("Pronto");
+ temp_sensor.requestTemperatures(); 
  Serial.print("A temperatura é: "); 
- Serial.print(sensors.getTempCByIndex(0)); // Pega a temperatura em graus Celsius getTempC.
+ Serial.println(temp_sensor.getTempCByIndex(0)); // Pega a temperatura em graus Celsius getTempC.
+ delay(100);
 }
