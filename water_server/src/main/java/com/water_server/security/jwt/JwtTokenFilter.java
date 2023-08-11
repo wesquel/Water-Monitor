@@ -13,7 +13,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class JwtTokenFilter extends GenericFilterBean{
+public class JwtTokenFilter extends GenericFilterBean {
     
     @Autowired
 	private JwtTokenProvider tokenProvider;

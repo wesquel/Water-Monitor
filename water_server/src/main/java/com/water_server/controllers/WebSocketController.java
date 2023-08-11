@@ -17,7 +17,7 @@ public class WebSocketController {
     @Autowired
     WebSocketService webSocketService;
 
-    @PostMapping("/api/send")
+    @PostMapping("/api/send-message")
     public ResponseEntity<?> sendMessage(@RequestBody SocketMessageVO socketMessageVO) {
         return webSocketService.sendMessageToTopic("/topic/message", socketMessageVO);
     }
