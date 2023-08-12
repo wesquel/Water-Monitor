@@ -25,6 +25,7 @@ public class WebSocketController {
     @MessageMapping("/send-message")
     public void receiveMessage(@Payload SocketMessageVO socketMessageVO) {
         // Recebe mensagem do cliente
+        webSocketService.sendMessageToTopic("/topic/message", socketMessageVO);
     }
 
     @SendTo("/topic/message")
