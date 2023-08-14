@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.water_server.model.Permission;
 import com.water_server.validation.UserCreationGroup;
 import com.water_server.validation.UserUpdateGroup;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -39,7 +40,7 @@ public class UserVO implements Serializable {
     private String fullName;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotBlank(message = "A senha não pode ser vazia.")
+    @NotBlank(message = "A senha não pode ser vazia.", groups = {UserCreationGroup.class})
     @Size(min = 8, message = "A senha deve conter ao menos 8 caracteres.", groups = {UserCreationGroup.class})
     private String password;
 
@@ -51,6 +52,7 @@ public class UserVO implements Serializable {
             max = 100, message = "O email não pode ter mais de 100 caracteres.",
             groups = {UserCreationGroup.class, UserUpdateGroup.class}
     )
+    @Email(message = "O email fornecido não é válido.", groups = {UserCreationGroup.class, UserUpdateGroup.class})
     private String email;
 
     private Boolean accountNonExpired;

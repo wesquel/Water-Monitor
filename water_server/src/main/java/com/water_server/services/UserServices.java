@@ -102,6 +102,7 @@ public class UserServices implements UserDetailsService {
         }
 
         user = repository.findByEmail(userVO.getEmail());
+
         if (user != null) {
             String errorMessage = "Este email já está em uso!";
 

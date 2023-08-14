@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +62,7 @@ public class UserController {
         return userServices.create(userVO);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Realiza a atualização de um usuário e o retorna.")
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
