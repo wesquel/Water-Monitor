@@ -43,6 +43,16 @@ public class UserVO implements Serializable {
     @Size(min = 8, message = "A senha deve conter ao menos 8 caracteres.", groups = {UserCreationGroup.class})
     private String password;
 
+    @NotBlank(
+            message = "O campo email não pode estar vazio.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
+    @Size(
+            max = 100, message = "O email não pode ter mais de 100 caracteres.",
+            groups = {UserCreationGroup.class, UserUpdateGroup.class}
+    )
+    private String email;
+
     private Boolean accountNonExpired;
 
     private Boolean accountNonLocked;
@@ -83,6 +93,14 @@ public class UserVO implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getAccountNonExpired() {

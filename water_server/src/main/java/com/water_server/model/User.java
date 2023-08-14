@@ -37,6 +37,9 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
     @Column(name = "account_non_expired")
     private Boolean accountNonExpired;
 
@@ -129,6 +132,14 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getAccountNonExpired() {

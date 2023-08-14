@@ -96,7 +96,14 @@ public class UserServices implements UserDetailsService {
         User user = repository.findByUsername(userVO.getUsername());
 
         if (user != null) {
-            String errorMessage = "O nome de usuário já existe.";
+            String errorMessage = "O nome de usuário já existe!";
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
+        user = repository.findByEmail(userVO.getEmail());
+        if (user != null) {
+            String errorMessage = "Este email já está em uso!";
 
             return ResponseEntity.badRequest().body(errorMessage);
         }
@@ -140,8 +147,19 @@ public class UserServices implements UserDetailsService {
             return ResponseEntity.badRequest().body(errorMessage);
         }
 
+        if (!user.getEmail().matches(userVO.getEmail())){
+            User userByEmail = repository.findByEmail(userVO.getEmail());
+
+            if (userByEmail != null) {
+                String errorMessage = "Este email já está em uso!";
+                
+                return ResponseEntity.badRequest().body(errorMessage);
+            }
+        }
+
         try {
             user.setFullName(userVO.getFullName());
+            user.setEmail(userVO.getEmail());
 
             User updatedUser = repository.save(user);
             UserVO resultUserVO = DozerMapper.parseObject(updatedUser, UserVO.class);
