@@ -41,6 +41,7 @@
 | `username` | `string` | `body`      | Nome de usuário. | Sim         |
 | `password` | `string` | `body`      | Senha.           | Sim         |
 | `fullName` | `string` | `body`      | Nome completo.   | Sim         |
+|  `email`   | `string` | `body`      | Email.           | Sim         |
 
 *Realiza a atualização de um usuário e o retorna.*
 
