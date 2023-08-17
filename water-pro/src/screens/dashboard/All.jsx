@@ -5,6 +5,8 @@ import { ReactComponent as Thermometer } from "../../assets/thermometer.svg";
 import { ReactComponent as Turbidity } from "../../assets/turbidity.svg";
 import Ph from "../../assets/ph.png";
 import { ReactComponent as Bolt } from "../../assets/bolt.svg";
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
 
 function AllDashboardScreen() {
   return (
@@ -17,41 +19,89 @@ function AllDashboardScreen() {
       </div>
       <div className="grid gap-9 mb-9 lg:grid-cols-4 lg:grid-rows-1 grid-cols-1 grid-rows-4">
         <Card>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center gap-2"
+          >
             <Thermometer />
             <span className="text-xs break-all">Temperatura</span>
-          </div>
-          <div className="flex ">
-            <span className="text-4xl break-all">26</span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center"
+          >
+            <span className="text-4xl break-all">
+              <CountUp end={26} />
+            </span>
             <span className="text-xs">°C</span>
-          </div>
+          </motion.div>
         </Card>
         <Card>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center gap-2"
+          >
             <Turbidity className="w-12 h-12" />
             <span className="text-xs break-all">Turbidez</span>
-          </div>
-          <div className="flex ">
-            <span className="text-4xl break-all">20</span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center"
+          >
+            <span className="text-4xl break-all">
+              <CountUp end={20} />
+            </span>
             <span className="text-xs">NTU</span>
-          </div>
+          </motion.div>
         </Card>
         <Card>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center gap-2"
+          >
             <Bolt />
             <span className="text-xs break-all">Condutividade</span>
-          </div>
-          <div className="flex ">
-            <span className="text-4xl break-all">100</span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center"
+          >
+            <span className="text-4xl break-all">
+              <CountUp end={100} />
+            </span>
             <span className="text-xs">μS/cm</span>
-          </div>
+          </motion.div>
         </Card>
         <Card>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center gap-2"
+          >
             <img src={Ph} className="w-12 invert p-1" />
             <span className="text-xs break-all">pH</span>
-          </div>
-          <span className="text-4xl break-all">7</span>
+          </motion.div>
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl break-all flex items-center justify-center"
+          >
+            <CountUp end={7} />
+          </motion.span>
         </Card>
       </div>
       <div className="grid-cols-1  grid-rows-chartMobile lg:grid-cols-2 grid lg:grid-rows-2 lg:w-full lg:h-[50vw] xl:h-[34vw] gap-9">
