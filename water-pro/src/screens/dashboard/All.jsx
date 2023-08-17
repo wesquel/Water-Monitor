@@ -32,7 +32,7 @@ function AllDashboardScreen() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center"
+            className="flex  items-start justify-center"
           >
             <span className="text-4xl break-all">
               <CountUp end={26} />
@@ -54,7 +54,7 @@ function AllDashboardScreen() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center"
+            className="flex  items-start justify-center"
           >
             <span className="text-4xl break-all">
               <CountUp end={20} />
@@ -76,7 +76,7 @@ function AllDashboardScreen() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center"
+            className="flex items-start justify-center"
           >
             <span className="text-4xl break-all">
               <CountUp end={100} />
