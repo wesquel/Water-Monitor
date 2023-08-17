@@ -44,15 +44,7 @@ export const options = {
 };
 
 function LineChart({ name, values, label }) {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  const labels = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
   var data = {
     labels,
     datasets: [
