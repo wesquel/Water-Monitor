@@ -5,9 +5,14 @@ module.exports = {
     colors: {
       mainBlue: "#00A6FB",
       mainWhite: "#ECEBF3",
-      mainBlack: "#1E1E1E",
+      mainBlack: "#33312E",
+      secondBlack: "#242424",
     },
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        chartMobile: "repeat(4, minmax(0, 60vw))",
+      },
+    },
   },
   plugins: [],
 };
