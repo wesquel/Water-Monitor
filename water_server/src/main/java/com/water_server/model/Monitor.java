@@ -23,14 +23,21 @@ public class Monitor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "mac_address", unique = true)
+    private String MACAddress;
+
     @Column(name = "temperatura")
     private double temperatura;
+
     @Column(name = "turbidez")
     private double turbidez;
+
     @Column(name = "nivel")
     private double nivel;
+
     @Column(name = "ph")
     private double ph;
+
     @Column(name = "condutividade")
     private double condutividade;
 
