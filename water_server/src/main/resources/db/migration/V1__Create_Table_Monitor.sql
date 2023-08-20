@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `monitor` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `mac_address` CHAR(12) NOT NULL,
+  `mac_address` varchar(255) NOT NULL,
   `temperatura` DECIMAL(10, 2) NOT NULL,
   `turbidez` DECIMAL(10, 2) NOT NULL,
   `nivel` DECIMAL(10, 2) NOT NULL,

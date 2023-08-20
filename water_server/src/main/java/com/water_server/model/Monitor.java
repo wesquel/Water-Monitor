@@ -59,6 +59,14 @@ public class Monitor implements Serializable {
         this.id = id;
     }
 
+    public String getMACAddress() {
+        return MACAddress;
+    }
+
+    public void setMACAddress(String MACAddress) {
+        this.MACAddress = MACAddress;
+    }
+
     public double getTemperatura() {
         return temperatura;
     }
@@ -99,52 +107,5 @@ public class Monitor implements Serializable {
         this.condutividade = condutividade;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(temperatura);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(turbidez);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(nivel);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(ph);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(condutividade);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Monitor other = (Monitor) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (Double.doubleToLongBits(temperatura) != Double.doubleToLongBits(other.temperatura))
-            return false;
-        if (Double.doubleToLongBits(turbidez) != Double.doubleToLongBits(other.turbidez))
-            return false;
-        if (Double.doubleToLongBits(nivel) != Double.doubleToLongBits(other.nivel))
-            return false;
-        if (Double.doubleToLongBits(ph) != Double.doubleToLongBits(other.ph))
-            return false;
-        if (Double.doubleToLongBits(condutividade) != Double.doubleToLongBits(other.condutividade))
-            return false;
-        return true;
-    }
-
-    
 
 }
