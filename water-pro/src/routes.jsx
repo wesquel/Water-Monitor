@@ -4,6 +4,7 @@ import Dashboard from "./screens/dashboard/Dashboard";
 import AllDashboardScreen from "./screens/dashboard/All";
 import CardsDashboardScreen from "./screens/dashboard/Cards";
 import ChartsDashboardScreen from "./screens/dashboard/Charts";
+import { DashboardSelectProvider } from "./context/DashboardSelectContext";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <DashboardSelectProvider>
+        <Dashboard />
+      </DashboardSelectProvider>
+    ),
     children: [
       {
         path: "",

@@ -23,6 +23,7 @@ ChartJS.register(
 );
 
 export const options = {
+  tension: 0.3,
   scales: {
     y: {
       grid: {
