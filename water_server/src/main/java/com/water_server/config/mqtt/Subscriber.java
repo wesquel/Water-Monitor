@@ -4,6 +4,7 @@ import com.water_server.data.MonitorVO;
 import com.water_server.model.Monitor;
 import com.water_server.repository.MonitorRepository;
 import com.water_server.services.MonitorService;
+import com.water_server.services.WebSocketService;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -27,6 +28,9 @@ public class Subscriber implements MqttCallback {
 
     @Autowired
     MonitorService monitorService;
+
+    @Autowired
+    WebSocketService webSocketService;
 
     @Value("${mqtt.broker}")
     private String brokerUrl;
@@ -93,6 +97,8 @@ public class Subscriber implements MqttCallback {
             } else {
                 monitorService.update(monitorVO);
             }
+
+            webSocketService.sendMonitorPayload(monitorVO);
         } else {
             this.start();
         }
