@@ -45,6 +45,7 @@ public class UserController {
     )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> findAllUsers(
         @RequestParam(value = "page", defaultValue = "0") Integer page, 
         @RequestParam(value = "size", defaultValue = "12") Integer size,
