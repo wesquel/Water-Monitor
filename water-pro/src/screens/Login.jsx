@@ -5,7 +5,6 @@ import { ReactComponent as Logo } from "../assets/logo.svg";
 import WaveSection from "../components/WaveSection";
 import Button from "../components/Button";
 import { useAuthValue } from "../context/AuthContext";
-
 const Login = () => {
   const { login } = useAuthValue();
 
@@ -64,7 +63,7 @@ const Login = () => {
               </label>
             </div>
             {loginError && (
-              <p className="text-red-500 mb-4">
+              <p className="mb-4">
                 Credenciais inválidas. Por favor, tente novamente.
               </p>
             )}

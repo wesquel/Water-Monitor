@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ReactComponent as Avatar } from "../assets/avatar.svg";
 import { ReactComponent as Service } from "../assets/service.svg";
@@ -7,10 +7,24 @@ import { ReactComponent as CardSvg } from "../assets/card.svg";
 import { ReactComponent as DashboardSvg } from "../assets/dashboard.svg";
 import { ReactComponent as ChartSvg } from "../assets/chart.svg";
 import DashboardButton from "./DashboardButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthValue } from "../context/AuthContext";
 
 function Aside({ className }) {
   const [selected, setSelected] = useState("all");
+  const [user, setUser] = useState(null);
+  const { getUser, logout } = useAuthValue();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setUser(JSON.parse(getUser()));
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <aside
       className={twMerge(
@@ -19,10 +33,13 @@ function Aside({ className }) {
       )}
     >
       <Avatar />
-      <span className="text-mainWhite">João Pedro</span>
+      <span className="text-mainWhite">{user && user.username}</span>
       <div className="flex gap-4 items-center">
         <Service className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
-        <Logout className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
+        <Logout
+          onClick={handleLogout}
+          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
+        />
       </div>
       <hr className="w-full text-mainBlack" />
       <Link to="/dashboard" className="w-full">

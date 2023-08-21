@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import WaveSection from "../components/WaveSection";
@@ -8,8 +8,10 @@ import WaveSection from "../components/WaveSection";
 const Register = () => {
   const [user, setUser] = useState("");
   const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,8 +21,9 @@ const Register = () => {
     try {
       const userData = {
         username: user,
-        fullName: fullName,
-        password: password,
+        fullName,
+        email,
+        password,
       };
 
       console.log(userData);
@@ -36,6 +39,7 @@ const Register = () => {
       if (response.ok) {
         // Requisição bem-sucedida, você pode redirecionar o usuário ou fazer outras ações
         console.log("Registro realizado com sucesso!");
+        navigate("/login");
       } else {
         // Tratar erros, exibir mensagens de erro, etc.
         console.error("Erro ao tentar criar conta.");
@@ -73,6 +77,16 @@ const Register = () => {
                   type="text"
                   className="p-2 bg-mainWhite rounded-xl outline-none border-2 w-full mt-1 focus:border-mainBlue transition-colors duration-300"
                   onChange={(e) => setFullName(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="flex flex-col mb-6">
+              <label>
+                <span className="font-semibold">E-Mail</span>
+                <input
+                  type="email"
+                  className="p-2 bg-mainWhite rounded-xl outline-none border-2 w-full mt-1 focus:border-mainBlue transition-colors duration-300"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
             </div>
