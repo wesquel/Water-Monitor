@@ -6,10 +6,9 @@ import com.water_server.mapper.DozerMapper;
 import com.water_server.model.Monitor;
 import com.water_server.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,13 +26,25 @@ public class MonitorService {
     @Autowired
     PagedResourcesAssembler<MonitorVO> assembler;
 
-    public PagedModel<EntityModel<MonitorVO>> findAll(Pageable pageable){
-        logger.info("Buscando todos os dados!");
+    public ResponseEntity<?> findAll(Pageable pageable) {
+        logger.info("Buscando todos os monitores!");
 
-        var monitorPage = monitorRepository.findAll(pageable);
-        var monitorVosPage = monitorPage.map(p -> DozerMapper.parseObject(p, MonitorVO.class));
-        
-        return assembler.toModel(monitorVosPage);
+        if (pageable == null) {
+            String errorMessage = "O objeto Pageable não pode ser nulo.";
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
+        try {
+            Page<Monitor> monitorPage = monitorRepository.findAll(pageable);
+            Page<MonitorVO> monitorVOsPage = monitorPage.map(p -> DozerMapper.parseObject(p, MonitorVO.class));
+
+            return ResponseEntity.ok(assembler.toModel(monitorVOsPage));
+        } catch (Exception e) {
+            String errorMessage = "Erro ao buscar os monitores.";
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
     }
 
     public ResponseEntity<?> findByMACAddress(String MACAddress) {
