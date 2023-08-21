@@ -1,6 +1,7 @@
 package com.water_server.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,8 +21,8 @@ public class Monitor implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "temperatura")
     private double temperatura;
@@ -44,11 +45,11 @@ public class Monitor implements Serializable {
         this.nivel = nivel;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -137,6 +138,8 @@ public class Monitor implements Serializable {
             return false;
         return true;
     }
+
+
 
     
 
