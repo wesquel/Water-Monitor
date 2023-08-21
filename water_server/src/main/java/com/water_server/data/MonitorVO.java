@@ -22,9 +22,15 @@ public class MonitorVO implements Serializable {
     @Mapping("id")
     @JsonProperty("id")
     private UUID id;
+
+    private String MACAddress;
+
     private double ph;
+
     private double temperatura;
+
     private double turbidez;
+
     private double condutividade;
 
     public MonitorVO() {
@@ -36,6 +42,14 @@ public class MonitorVO implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getMACAddress() {
+        return MACAddress;
+    }
+
+    public void setMACAddress(String MACAddress) {
+        this.MACAddress = MACAddress;
     }
 
     public double getPh() {
@@ -58,24 +72,15 @@ public class MonitorVO implements Serializable {
         return turbidez;
     }
 
-
     public void setTurbidez(double turbidez) {
         this.turbidez = turbidez;
     }
-
 
     public double getCondutividade() {
         return condutividade;
     }
 
-
     public void setCondutividade(double condutividade) {
         this.condutividade = condutividade;
-    } 
-
-    
-
-    
-
-    
+    }
 }

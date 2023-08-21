@@ -24,14 +24,21 @@ public class Monitor implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "mac_address", unique = true)
+    private String MACAddress;
+
     @Column(name = "temperatura")
     private double temperatura;
+
     @Column(name = "turbidez")
     private double turbidez;
+
     @Column(name = "nivel")
     private double nivel;
+
     @Column(name = "ph")
     private double ph;
+
     @Column(name = "condutividade")
     private double condutividade;
 
@@ -51,6 +58,14 @@ public class Monitor implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getMACAddress() {
+        return MACAddress;
+    }
+
+    public void setMACAddress(String MACAddress) {
+        this.MACAddress = MACAddress;
     }
 
     public double getTemperatura() {
@@ -141,6 +156,5 @@ public class Monitor implements Serializable {
 
 
 
-    
 
 }

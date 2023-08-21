@@ -7,7 +7,7 @@ int analogBufferTemp[SCOUNT]; // buffer temporario
 
 int analogBufferIndex = 0; // indice do buffer
 int copyIndex = 0;
-float averageVoltage = 0, tdsValue = 0, temperature = 25;
+float averageVoltage = 0.0, tdsValue = 0.0, temperature = 25.0;
 
 
 void setup()
@@ -40,7 +40,7 @@ void loop()
     
     tdsValue = (133.42*compensationVolatge*compensationVolatge*compensationVolatge - 255.86*compensationVolatge*compensationVolatge + 857.39*compensationVolatge)*0.5; //convert voltage value to tds value
     //Serial.print("voltage:");
-    //Serial.print(averageVoltage,2);
+    Serial.print(averageVoltage,2);
     //Serial.print("V ");
     Serial.print("TDS Value:");
     Serial.print(tdsValue,0);
