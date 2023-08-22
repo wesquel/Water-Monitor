@@ -2,9 +2,7 @@
 #include <DallasTemperature.h>
 
 #define temp 4
-
 OneWire temp_one_wire(temp);  
-
 DallasTemperature temp_sensor(&temp_one_wire); 
 
 void setup(void)
