@@ -8,6 +8,7 @@ import { ReactComponent as DashboardSvg } from "../assets/dashboard.svg";
 import { ReactComponent as ChartSvg } from "../assets/chart.svg";
 import DashboardButton from "./DashboardButton";
 import { Link } from "react-router-dom";
+import { SelectDropdown } from "./selectDropdown";
 
 function Aside({ className }) {
   const [selected, setSelected] = useState("all");
@@ -24,7 +25,11 @@ function Aside({ className }) {
         <Service className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
         <Logout className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
       </div>
-      <hr className="w-full text-mainBlack" />
+      <hr className="w-full border-mainBlack" />
+      <SelectDropdown.Root>
+        <SelectDropdown.Item value="caixa">Caixa de água</SelectDropdown.Item>
+        <SelectDropdown.Item value="medio">Ensino médio</SelectDropdown.Item>
+      </SelectDropdown.Root>
       <Link to="/dashboard" className="w-full">
         <DashboardButton
           selected={selected === "all"}

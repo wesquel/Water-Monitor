@@ -9,7 +9,7 @@ function Card({ children, className, ...props }) {
         className
       )}
     >
-      <div className="p-2 w-full justify-around grid grid-cols-2 grid-rows-1 items-center gap-6 text-mainWhite">
+      <div className="p-2 w-full justify-center flex flex-wrap items-center gap-6 text-mainWhite">
         {children}
       </div>
     </div>
