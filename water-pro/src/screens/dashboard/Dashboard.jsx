@@ -3,7 +3,7 @@ import Aside from "../../components/Aside";
 
 function Dashboard() {
   return (
-    <div className="w-screen min-h-screen bg-mainBlack flex">
+    <div className="min-h-screen bg-mainBlack flex">
       <Aside className="hidden lg:flex" />
       <div className="w-full lg:ml-[270px]">
         <Outlet />

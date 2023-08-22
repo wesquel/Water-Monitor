@@ -1,4 +1,4 @@
-#define pin_turbidez A3
+#define pin_turbidez A0
 
 int leitura;
 float tensao;

@@ -2,13 +2,11 @@ package com.water_server.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.water_server.data.MonitorVO;
 import com.water_server.exceptions.RequiredObjectIsNullException;
@@ -29,6 +27,18 @@ public class MonitorController {
     @Autowired
     private MonitorService monitorService;
 
+    @Operation(summary = "Realiza uma busca paginada de todos os monitores.")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> findAllMonitors(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "12") Integer size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        return monitorService.findAll(pageable);
+    }
+
     @Operation(summary = "Cria uma instância de monitor.")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,5 +56,12 @@ public class MonitorController {
             String mensagemDeErro = "Ocorreu um erro ao criar o produto.";
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagemDeErro);
         }
+    }
+
+    @Operation(summary = "Realiza a atualização de um monitor e o retorna.")
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> update(@RequestBody MonitorVO monitorVO) {
+        return monitorService.update(monitorVO);
     }
 }
