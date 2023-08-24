@@ -13,6 +13,10 @@ module.exports = {
         chartMobile: "repeat(4, minmax(0, 60vw))",
         chartMobileCaixa: "repeat(5, minmax(0, 60vw))",
       },
+      gridTemplateColumns: {
+        serviceDashboardGrid: "0.5fr 1fr",
+        serviceDashboardGridMobile: "auto 1fr",
+      },
     },
   },
   plugins: [],

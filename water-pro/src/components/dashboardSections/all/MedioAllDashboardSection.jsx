@@ -16,7 +16,7 @@ const motionProperties = {
 
 function MedioAllDashboardSection() {
   return (
-    <div className="p-2 lg:p-0 w-full min-h-screen lg:h-screen lg:px-20 xl:px-28 flex flex-col justify-center">
+    <div className="p-2 lg:p-0 w-full min-h-screen lg:px-20 xl:px-28 flex flex-col justify-center">
       <div className="grid gap-9 mb-9 lg:grid-cols-4 lg:grid-rows-1 grid-cols-1 grid-rows-2 items-center">
         <p className="lg:col-span-3 text-mainWhite">
           Última atualização: xx/xx/xxxx 99:99

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ReactComponent as Avatar } from "../assets/avatar.svg";
 import { ReactComponent as Service } from "../assets/service.svg";
@@ -11,7 +11,20 @@ import { Link } from "react-router-dom";
 import { SelectDropdown } from "./selectDropdown";
 
 function Aside({ className }) {
-  const [selected, setSelected] = useState("all");
+  const [selected, setSelected] = useState("");
+  useEffect(() => {
+    let urlPage = window.location.href;
+    if (urlPage.includes("service")) {
+      setSelected("service");
+    } else if (urlPage.includes("cards")) {
+      setSelected("cards");
+    } else if (urlPage.includes("charts")) {
+      setSelected("charts");
+    } else {
+      setSelected("all");
+    }
+  }, []);
+
   return (
     <aside
       className={twMerge(
@@ -22,7 +35,13 @@ function Aside({ className }) {
       <Avatar />
       <span className="text-mainWhite">João Pedro</span>
       <div className="flex gap-4 items-center">
-        <Service className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
+        <Link to="/dashboard/service/user">
+          <Service
+            style={{ color: selected === "service" ? "#00A6FB" : "" }}
+            onClick={() => setSelected("service")}
+            className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
+          />
+        </Link>
         <Logout className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
       </div>
       <hr className="w-full border-mainBlack" />
