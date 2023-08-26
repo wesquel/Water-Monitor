@@ -12,7 +12,7 @@ import { useAuthValue } from "../context/AuthContext";
 import { SelectDropdown } from "./selectDropdown";
 
 function Aside({ className }) {
-  const [selected, setSelected] = useState("all");
+  const [selected, setSelected] = useState("");
   const [user, setUser] = useState(null);
   const { getUser, logout } = useAuthValue();
   const navigate = useNavigate();
@@ -26,6 +26,19 @@ function Aside({ className }) {
     navigate("/");
   };
 
+  useEffect(() => {
+    let urlPage = window.location.href;
+    if (urlPage.includes("service")) {
+      setSelected("service");
+    } else if (urlPage.includes("cards")) {
+      setSelected("cards");
+    } else if (urlPage.includes("charts")) {
+      setSelected("charts");
+    } else {
+      setSelected("all");
+    }
+  }, []);
+
   return (
     <aside
       className={twMerge(
@@ -36,10 +49,16 @@ function Aside({ className }) {
       <Avatar />
       <span className="text-mainWhite">{user && user.username}</span>
       <div className="flex gap-4 items-center">
-        <Service className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
-        <Logout
+        <Link to="/dashboard/service/user">
+          <Service
+            style={{ color: selected === "service" ? "#00A6FB" : "" }}
+            onClick={() => setSelected("service")}
+            className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
+          />
+        </Link>
+        <Logout 
+          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" 
           onClick={handleLogout}
-          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
         />
       </div>
       <hr className="w-full border-mainBlack" />

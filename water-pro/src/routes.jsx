@@ -8,6 +8,10 @@ import CardsDashboardScreen from "./screens/dashboard/Cards";
 import ChartsDashboardScreen from "./screens/dashboard/Charts";
 import { RequireAuth, RequireNoAuth } from "./context/AuthContext";
 import { DashboardSelectProvider } from "./context/DashboardSelectContext";
+import DashboardService from "./screens/dashboard/Service";
+import User from "./components/dashboardSections/service/User";
+import Users from "./components/dashboardSections/service/Users";
+import ChangePassword from "./components/dashboardSections/service/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +59,24 @@ const router = createBrowserRouter([
       {
         path: "charts",
         element: <ChartsDashboardScreen />,
+      },
+      {
+        path: "service",
+        element: <DashboardService />,
+        children: [
+          {
+            path: "user",
+            element: <User />,
+          },
+          {
+            path: "changepassword",
+            element: <ChangePassword />,
+          },
+          {
+            path: "users",
+            element: <Users />,
+          },
+        ],
       },
     ],
   },
