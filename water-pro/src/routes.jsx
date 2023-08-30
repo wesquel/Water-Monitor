@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./screens/home";
+import Home from "./screens/Home";
 import Dashboard from "./screens/dashboard/Dashboard";
 import AllDashboardScreen from "./screens/dashboard/All";
 import CardsDashboardScreen from "./screens/dashboard/Cards";
