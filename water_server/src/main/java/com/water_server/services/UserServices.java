@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Service
@@ -88,13 +89,14 @@ public class UserServices implements UserDetailsService {
 
     public ResponseEntity<?> create(UserVO userVO) {
         logger.info("Iniciando a criação de usuário!");
-
+        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
         if (userVO == null) {
             return ResponseEntity.badRequest().body("Requisição inválida!");
         }
-
+        System.out.println(userVO.toString());
+        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII1");
         User user = repository.findByUsername(userVO.getUsername());
-
+        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII2");
         if (user != null) {
             String errorMessage = "O nome de usuário já existe!";
 
@@ -113,12 +115,16 @@ public class UserServices implements UserDetailsService {
 
         try {
             User entity = DozerMapper.parseObject(userVO, User.class);
+            // String uuidString = "c0f25256-4f38-43dc-a069-1ac7123a8a4c";
+            // UUID uuid = UUID.fromString(uuidString);
+            Permission commonUserPermission = permissionRepository.findByDescription("COMMON_USER");
 
-            Permission commonUserPermission = permissionRepository.findById(2L).orElseThrow(
-                    () -> new ResourceNotFoundException("ID de permissão não encontrado.")
-            );
+            if (commonUserPermission == null) {
+                new ResourceNotFoundException("ID de permissão não encontrado.");
+            }
 
             entity.setPermissions(List.of(commonUserPermission));
+            entity.setId(UUID.randomUUID());
 
             UserVO newUserVO;
 

@@ -1,23 +1,25 @@
 package com.water_server.data;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.water_server.model.Permission;
 import com.water_server.validation.UserCreationGroup;
 import com.water_server.validation.UserUpdateGroup;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
-import java.io.Serializable;
-import java.util.List;
 
 @JsonIgnoreProperties({"id", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled", "permissions"})
 public class UserVO implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private UUID id;
 
     @NotBlank(
             message = "O nome de usuário não pode ser vazio.",
@@ -65,11 +67,11 @@ public class UserVO implements Serializable {
 
     private List<Permission> permissions;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
