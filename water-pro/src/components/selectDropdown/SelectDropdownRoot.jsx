@@ -45,7 +45,7 @@ export function SelectDropdownRoot({ children, className }) {
       </div>
       <div
         className={twMerge(
-          "bg-mainBlue rounded-lg flex flex-col text-mainWhite p-4 absolute w-[230px] top-12 gap-3 shadow-md transition-opacity ease-in-out duration-300",
+          "bg-mainBlue rounded-lg flex flex-col text-mainWhite overflow-hidden absolute w-full top-12 gap-3 shadow-md transition-opacity ease-in-out duration-300",
           show
             ? "opacity-100 "
             : "opacity-0  invisible transition-all duration-300"
