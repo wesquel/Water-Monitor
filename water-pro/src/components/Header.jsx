@@ -1,4 +1,5 @@
 import Container from "./Container";
+import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import Button from "./Button";
 function Header() {
@@ -7,8 +8,12 @@ function Header() {
       <div className="w-full flex justify-between items-center py-10 flex-col sm:flex-row gap-4">
         <Logo className="text-mainBlue w-24 h-12" />
         <div className="flex items-center gap-8">
-          <Button>ENTRAR</Button>
-          <Button variant="outlined">CADASTRAR</Button>
+          <Link to="/login">
+            <Button>ENTRAR</Button>
+          </Link>
+          <Link to="/register">
+            <Button variant="outlined">CADASTRAR</Button>
+          </Link>
         </div>
       </div>
     </Container>

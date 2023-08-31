@@ -7,11 +7,25 @@ import { ReactComponent as CardSvg } from "../assets/card.svg";
 import { ReactComponent as DashboardSvg } from "../assets/dashboard.svg";
 import { ReactComponent as ChartSvg } from "../assets/chart.svg";
 import DashboardButton from "./DashboardButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthValue } from "../context/AuthContext";
 import { SelectDropdown } from "./selectDropdown";
 
 function Aside({ className }) {
   const [selected, setSelected] = useState("");
+  const [user, setUser] = useState(null);
+  const { getUser, logout } = useAuthValue();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setUser(JSON.parse(getUser()));
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   useEffect(() => {
     let urlPage = window.location.href;
     if (urlPage.includes("service")) {
@@ -33,7 +47,7 @@ function Aside({ className }) {
       )}
     >
       <Avatar />
-      <span className="text-mainWhite">João Pedro</span>
+      <span className="text-mainWhite">{user && user.username}</span>
       <div className="flex gap-4 items-center">
         <Link to="/dashboard/service/user">
           <Service
@@ -42,7 +56,10 @@ function Aside({ className }) {
             className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
           />
         </Link>
-        <Logout className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" />
+        <Logout 
+          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" 
+          onClick={handleLogout}
+        />
       </div>
       <hr className="w-full border-mainBlack" />
       <SelectDropdown.Root>
