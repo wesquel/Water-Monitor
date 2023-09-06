@@ -24,7 +24,8 @@ public class Monitor implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "mac_address", unique = true)
+    //@Column(name = "mac_address", unique = true)
+    @Column(name = "mac_address")
     private String MACAddress;
 
     @Column(name = "temperatura")
