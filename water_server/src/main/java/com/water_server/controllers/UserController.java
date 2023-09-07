@@ -63,7 +63,6 @@ public class UserController {
         return userServices.create(userVO);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Realiza a atualização de um usuário e o retorna.")
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
