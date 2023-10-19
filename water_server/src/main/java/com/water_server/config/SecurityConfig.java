@@ -52,10 +52,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorize -> authorize
                                 .requestMatchers(PUBLIC_MATCHERS).permitAll()
-                                // Permitimos o acesso ao endpoint do websocket aqui
+                                // Permitimos o acesso ao endpoint do WebSocket aqui
                                 // Porém, no WebSocketSecurityConfig deixamos apenas usuários autenticados
                                 .requestMatchers("/water-monitor-websocket").permitAll()
-                                .requestMatchers("/api/user").hasAuthority("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(

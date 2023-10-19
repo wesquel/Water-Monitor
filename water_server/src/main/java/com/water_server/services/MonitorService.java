@@ -92,15 +92,12 @@ public class MonitorService {
         if (monitorVO == null) {
             return ResponseEntity.badRequest().body("Requisição inválida!");
         }
-
         Monitor monitor = monitorRepository.findByMACAddress(monitorVO.getMACAddress());
-
         if (monitor == null) {
             String errorMessage = "O monitor com o endereço MAC fornecido não existe.";
 
             return ResponseEntity.badRequest().body(errorMessage);
         }
-
         try {
             monitor.setCondutividade(monitorVO.getCondutividade());
             monitor.setPh(monitorVO.getPh());
@@ -109,7 +106,6 @@ public class MonitorService {
 
             Monitor updatedMonitor = monitorRepository.save(monitor);
             MonitorVO resultMonitorVO = DozerMapper.parseObject(updatedMonitor, MonitorVO.class);
-
             return ResponseEntity.ok().body(resultMonitorVO);
         } catch (Exception e) {
             String errorMessage = "Erro ao atualizar dados do monitor.";
