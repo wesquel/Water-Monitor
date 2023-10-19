@@ -56,8 +56,8 @@ function Aside({ className }) {
             className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
           />
         </Link>
-        <Logout 
-          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors" 
+        <Logout
+          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
           onClick={handleLogout}
         />
       </div>

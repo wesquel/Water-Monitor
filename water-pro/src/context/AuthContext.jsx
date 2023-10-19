@@ -9,11 +9,18 @@ export function AuthProvider({ children }) {
   const login = async (data) => {
     try {
       const config = requestConfig("POST", data);
+      const configUser = requestConfig("GET");
       const response = await fetch(api + "/auth/signin", config);
 
       if (response.ok) {
         const userData = await response.json();
+        const responseUser = await fetch(
+          api + `/user/${userData.username}`,
+          configUser
+        );
+        const userDetails = await responseUser.json();
         localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
         return true;
       }
     } catch (error) {
@@ -24,12 +31,13 @@ export function AuthProvider({ children }) {
 
   // Get the authentication token
   const getUser = () => {
-    return localStorage.getItem("user");
+    return localStorage.getItem("userDetails");
   };
 
   // Sign out a user
   const logout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("userDetails");
   };
   return (
     <AuthContext.Provider value={{ login, getUser, logout }}>

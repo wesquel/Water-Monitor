@@ -1,7 +1,17 @@
 import { ReactComponent as Photo } from "../../../assets/photo.svg";
 import { ReactComponent as Avatar } from "../../../assets/avatar.svg";
 
+import { useState, useEffect } from "react";
+import { useAuthValue } from "../../../context/AuthContext";
+
 function User() {
+  const [user, setUser] = useState();
+  const { getUser } = useAuthValue();
+
+  useEffect(() => {
+    setUser(JSON.parse(getUser()));
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center gap-4">
       <div className="relative group photo overflow-hidden rounded-full cursor-pointer">
@@ -13,15 +23,11 @@ function User() {
       <div className="flex flex-col gap-8 text-mainWhite w-full break-all">
         <div>
           <label>Nome</label>
-          <p>João Pedro de Sousa Corrêa</p>
+          <p>{user && user.fullName}</p>
         </div>
         <div>
           <label>E-mail</label>
-          <p>joao.correa@academico.ifpb.edu.br</p>
-        </div>
-        <div>
-          <label>Telefone</label>
-          <p>(83) 98176-9315</p>
+          <p>{user && user.email}</p>
         </div>
       </div>
     </div>
