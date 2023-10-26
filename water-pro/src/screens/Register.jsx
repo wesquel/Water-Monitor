@@ -11,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,14 +20,13 @@ const Register = () => {
     // Aqui você pode adicionar validações de dados do formulário
 
     try {
+      setLoading(true);
       const userData = {
         username: user,
         fullName,
         email,
         password,
       };
-
-      console.log(userData);
 
       const response = await fetch("http://localhost:8080/api/user/signup", {
         method: "POST",
@@ -39,10 +39,12 @@ const Register = () => {
       if (response.ok) {
         // Requisição bem-sucedida, você pode redirecionar o usuário ou fazer outras ações
         console.log("Registro realizado com sucesso!");
+        setLoading(false);
         navigate("/login");
       } else {
         // Tratar erros, exibir mensagens de erro, etc.
         console.error("Erro ao tentar criar conta.");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Erro ao enviar a requisição:", error);
@@ -118,7 +120,11 @@ const Register = () => {
                   termos
                 </Link>
               </label>
-              <Button className="bg-mainBlack text-mainWhite uppercase">
+              <Button
+                className={`bg-mainBlack text-mainWhite uppercase ${
+                  loading ? "cursor-not-allowed" : ""
+                }`}
+              >
                 Criar Conta
               </Button>
             </div>
