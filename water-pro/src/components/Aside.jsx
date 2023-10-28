@@ -104,46 +104,8 @@ function Aside({ className }) {
             <span className="font-semibold">Gráficos</span>
           </DashboardButton>
         </Link>
-        <Logout
-          className="w-6 cursor-pointer text-mainWhite hover:text-mainBlue transition-colors"
-          onClick={handleLogout}
-        />
-      </div>
-      <hr className="w-full border-mainBlack" />
-      <SelectDropdown.Root>
-        <SelectDropdown.Item value="caixa">Caixa de água</SelectDropdown.Item>
-        <SelectDropdown.Item value="medio">Ensino médio</SelectDropdown.Item>
-      </SelectDropdown.Root>
-      <Link to="/dashboard" className="w-full">
-        <DashboardButton
-          selected={selected === "all"}
-          onClick={() => setSelected("all")}
-        >
-          <DashboardSvg className="w-8" />
-          <span className="font-semibold">Todos</span>
-        </DashboardButton>
-      </Link>
-      <Link to="/dashboard/cards" className="w-full">
-        <DashboardButton
-          selected={selected === "cards"}
-          onClick={() => setSelected("cards")}
-        >
-          <CardSvg className="w-8" />
-          <span className="font-semibold">Cards</span>
-        </DashboardButton>
-      </Link>
-      <Link to="/dashboard/charts" className="w-full">
-        <DashboardButton
-          selected={selected === "charts"}
-          onClick={() => setSelected("charts")}
-        >
-          <ChartSvg className="w-8" />
-          <span className="font-semibold">Gráficos</span>
-        </DashboardButton>
-      </Link>
       </aside>
     </MeunuHamburguer>
-
   );
 }
 export default Aside;

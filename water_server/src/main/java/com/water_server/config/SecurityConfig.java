@@ -32,7 +32,8 @@ public class SecurityConfig {
 
     private static final String[] PUBLIC_MATCHERS = {
             "/api/user/signup",
-            "/api/auth/signin"
+            "/api/auth/signin",
+            "/api/user/**" // Necessário para permitir o LOGIN - GAMBIARRA**
     };
 
     /**

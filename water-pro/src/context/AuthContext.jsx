@@ -14,11 +14,13 @@ export function AuthProvider({ children }) {
 
       if (response.ok) {
         const userData = await response.json();
+        console.log(userData);
         const responseUser = await fetch(
           api + `/user/${userData.username}`,
           configUser
         );
         const userDetails = await responseUser.json();
+        console.log(userDetails);
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
         return true;
@@ -34,13 +36,18 @@ export function AuthProvider({ children }) {
     return localStorage.getItem("userDetails");
   };
 
+  const getToken = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user.accessToken;
+  };
+
   // Sign out a user
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("userDetails");
   };
   return (
-    <AuthContext.Provider value={{ login, getUser, logout }}>
+    <AuthContext.Provider value={{ login, getUser, getToken, logout }}>
       {children}
     </AuthContext.Provider>
   );
