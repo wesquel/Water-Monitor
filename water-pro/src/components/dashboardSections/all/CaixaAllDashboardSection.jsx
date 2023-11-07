@@ -8,6 +8,8 @@ import { ReactComponent as WaterDrop } from "../../../assets/waterDrop.svg";
 import Ph from "../../../assets/ph.png";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
+import { useContext, useEffect, useState } from "react";
+import { WebsocketContext } from "../../../context/WebsocketContext";
 
 const motionProperties = {
   initial: { opacity: 0, y: 30 },
@@ -16,13 +18,34 @@ const motionProperties = {
 };
 
 function CaixaAllDashboardSection() {
+  const { message, lastUpdate } = useContext(WebsocketContext);
+  const [lastMessageUpdate, setLastDateUpadate] = useState("--");
+
+  const handleLasUpdate = (lastUpdate) => {
+    if (lastUpdate !== null) {
+      setLastDateUpadate(
+        lastUpdate.toLocaleDateString("pt-BR") +
+          " " +
+          lastUpdate.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          })
+      );
+    }
+  };
+
+  useEffect(() => {
+    handleLasUpdate(lastUpdate);
+  }, [lastUpdate]);
+
   return (
     <div className="p-2 w-full min-h-screen lg:px-20 lg:py-14 xl:px-28 flex flex-col justify-center">
       <div className="grid gap-9 mb-9 lg:grid-cols-4 lg:grid-rows-1 grid-cols-1 grid-rows-2 items-center">
         <p className="lg:col-span-3 text-mainWhite">
-          Última atualização: xx/xx/xxxx 99:99
+          Última atualização: {lastMessageUpdate}
         </p>
-        <ChangeFilterDateButton />
+        {/* <ChangeFilterDateButton /> */}
       </div>
       <div className="grid gap-9 mb-9 lg:grid-cols-5 lg:grid-rows-1 grid-cols-1 grid-rows-5">
         <Card>
@@ -42,7 +65,7 @@ function CaixaAllDashboardSection() {
             className="flex  items-start justify-center"
           >
             <span className="text-4xl break-all">
-              <CountUp end={26} />
+              {message.temperatura !== undefined ? message.temperatura : "--"}
             </span>
             <span className="text-xs">°C</span>
           </motion.div>
@@ -64,7 +87,7 @@ function CaixaAllDashboardSection() {
             className="flex  items-start justify-center"
           >
             <span className="text-4xl break-all">
-              <CountUp end={20} />
+              {message.turbidez !== undefined ? message.turbidez : "--"}
             </span>
             <span className="text-xs">NTU</span>
           </motion.div>
@@ -86,7 +109,9 @@ function CaixaAllDashboardSection() {
             className="flex items-start justify-center"
           >
             <span className="text-4xl break-all">
-              <CountUp end={100} />
+              {message.condutividade !== undefined
+                ? message.condutividade
+                : "--"}
             </span>
             <span className="text-xs">μS/cm</span>
           </motion.div>
@@ -107,7 +132,7 @@ function CaixaAllDashboardSection() {
             transition={motionProperties.transition}
             className="text-4xl break-all flex items-center justify-center"
           >
-            <CountUp end={7} />
+            {message.ph !== undefined ? message.ph : "--"}
           </motion.span>
         </Card>
         <Card>
@@ -127,7 +152,7 @@ function CaixaAllDashboardSection() {
             className="flex items-start justify-center"
           >
             <span className="text-4xl break-all">
-              <CountUp end={80} />
+              {message.nivel !== undefined ? message.nivel : "--"}
             </span>
             <span className="text-xs">%</span>
           </motion.div>

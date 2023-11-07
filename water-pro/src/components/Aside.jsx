@@ -69,14 +69,14 @@ function Aside({ className }) {
           />
         </div>
         <hr className="w-full border-mainBlack" />
-        <SelectDropdown.Root>
+        {/* <SelectDropdown.Root>
           <SelectDropdown.Item closeModal={setShowModal} value="caixa">
             Caixa de água
           </SelectDropdown.Item>
           <SelectDropdown.Item closeModal={setShowModal} value="medio">
             Ensino médio
           </SelectDropdown.Item>
-        </SelectDropdown.Root>
+        </SelectDropdown.Root> */}
         <Link to="/dashboard" className="w-full">
           <DashboardButton
             selected={selected === "all"}

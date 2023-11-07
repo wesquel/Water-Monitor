@@ -12,6 +12,7 @@ import DashboardService from "./screens/dashboard/Service";
 import User from "./components/dashboardSections/service/User";
 import Users from "./components/dashboardSections/service/Users";
 import ChangePassword from "./components/dashboardSections/service/ChangePassword";
+import { WebsocketProvider } from "./context/WebsocketContext";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +43,11 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <RequireAuth value="/login">
-        <DashboardSelectProvider>
-          <Dashboard />
-        </DashboardSelectProvider>
+        <WebsocketProvider>
+          <DashboardSelectProvider>
+            <Dashboard />
+          </DashboardSelectProvider>
+        </WebsocketProvider>
       </RequireAuth>
     ),
     children: [
