@@ -33,6 +33,8 @@ public class MonitorVO implements Serializable {
 
     private double condutividade;
 
+    private double nivel;
+
     public MonitorVO() {
     }
 
@@ -82,5 +84,13 @@ public class MonitorVO implements Serializable {
 
     public void setCondutividade(double condutividade) {
         this.condutividade = condutividade;
+    }
+
+    public double getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(double nivel) {
+        this.nivel = nivel;
     }
 }

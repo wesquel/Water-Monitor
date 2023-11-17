@@ -28,7 +28,8 @@ while True:
         "condutividade": random.randint(0, 3),
         "ph": random.randint(0, 14),
         "temperatura": random.randint(0, 100),
-        "turbidez": random.randint(0, 5)
+        "turbidez": random.randint(0, 5),
+        "nivel": random.randint(0, 100)
     }
 
     message_payload = json.dumps(message_data)

@@ -103,6 +103,7 @@ public class MonitorService {
             monitor.setPh(monitorVO.getPh());
             monitor.setTemperatura(monitorVO.getTemperatura());
             monitor.setTurbidez(monitorVO.getTurbidez());
+            monitor.setNivel(monitorVO.getNivel());
 
             Monitor updatedMonitor = monitorRepository.save(monitor);
             MonitorVO resultMonitorVO = DozerMapper.parseObject(updatedMonitor, MonitorVO.class);

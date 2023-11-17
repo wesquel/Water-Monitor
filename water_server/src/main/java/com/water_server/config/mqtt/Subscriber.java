@@ -63,6 +63,7 @@ public class Subscriber implements MqttCallback {
         double temperatura = 0;
         double turbidez = 0;
         double condutividade = 0;
+        double nivel = 0;
 
         JSONObject json;
 
@@ -74,6 +75,7 @@ public class Subscriber implements MqttCallback {
             temperatura = json.getDouble("temperatura");
             turbidez = json.getDouble("turbidez");
             condutividade = json.getDouble("condutividade");
+            nivel = json.getDouble("nivel");
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -87,6 +89,7 @@ public class Subscriber implements MqttCallback {
             monitorVO.setPh(ph);
             monitorVO.setTemperatura(temperatura);
             monitorVO.setTurbidez(turbidez);
+            monitorVO.setNivel(nivel);
 
             System.out.println("Received message:\n" + payload);
 
