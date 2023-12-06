@@ -47,7 +47,7 @@ function CaixaAllDashboardSection() {
         </p>
         {/* <ChangeFilterDateButton /> */}
       </div>
-      <div className="grid gap-9 mb-9 lg:grid-cols-5 lg:grid-rows-1 grid-cols-1 grid-rows-5">
+      <div className="grid gap-9 mb-9 2xl:grid-cols-5 2xl:grid-rows-1 lg:grid-cols-3 lg:grid-rows-2 md:grid-cols-3 md:grid-rows-2 sm:grid-cols-2 sm:grid-rows-3 grid-cols-1 grid-rows-5">
         <Card>
           <motion.div
             initial={motionProperties.initial}
