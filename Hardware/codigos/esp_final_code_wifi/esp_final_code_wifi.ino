@@ -18,8 +18,8 @@ char* broker =  "mqtt.eclipseprojects.io";
 char* user = "gatewayWaterPro";
 char* password = "";
 
-const char* ssid = "brisa-603071"; 
-const char* pasword_wifi = "xz4iv3wb"; 
+const char* ssid = "#####"; 
+const char* pasword_wifi = "######"; 
 
 WiFiClient espClient;
 PubSubClient client(espClient);
