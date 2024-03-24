@@ -89,14 +89,11 @@ public class UserServices implements UserDetailsService {
 
     public ResponseEntity<?> create(UserVO userVO) {
         logger.info("Iniciando a criação de usuário!");
-        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
         if (userVO == null) {
             return ResponseEntity.badRequest().body("Requisição inválida!");
         }
-        System.out.println(userVO.toString());
-        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII1");
         User user = repository.findByUsername(userVO.getUsername());
-        System.out.println("TO AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII2");
+
         if (user != null) {
             String errorMessage = "O nome de usuário já existe!";
 
